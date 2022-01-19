@@ -88,49 +88,103 @@ LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 
+Mode='1'
+
+mousechanger=game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(k)
+if k == 'r' then-- first mode
+Mode='1'
+elseif k == 't' then-- second mode
+Mode='2'
+end
+end)
+
 coroutine.wrap(function()
-hatset('fff_fox','Torso',CFrame.new(),reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(-1.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),-3.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
-hatset('Pal Hair','Torso',CFrame.new(),reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(-1.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),-2+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
-reanim['fff_fox'].Handle.AccessoryWeld.C0 = reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(-1.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),-3.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-reanim['Pal Hair'].Handle.AccessoryWeld.C0 = reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(-1.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),-2+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+--hats here
 while true do -- anim changer
 if HumanDied then break end
 sine = sine + speed
+if Mode == '1' then
+hatset('Pal Hair','Right Arm',CFrame.new(),reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
+reanim['Pal Hair'].Handle.AccessoryWeld.C0 = reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+hatset('fff_fox','Right Arm',CFrame.new(),reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),-2+0*math.cos(sine/13),1+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
+reanim['fff_fox'].Handle.AccessoryWeld.C0 = reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),-2+0*math.cos(sine/13),1+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 if Root.Velocity.y > 1 then -- jump
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(140+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/19),0.5+0.05*math.cos(sine/19),0+0*math.cos(sine/19))*ANGLES(RAD(122+10*math.cos(sine/19)),RAD(0+0*math.cos(sine/19)),RAD(0+0*math.cos(sine/19))),.3)
-RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
-LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(170+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
 elseif Root.Velocity.y < -1 then -- fall
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(140+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/19),0.5+0.05*math.cos(sine/19),0+0*math.cos(sine/19))*ANGLES(RAD(122+10*math.cos(sine/19)),RAD(0+0*math.cos(sine/19)),RAD(0+0*math.cos(sine/19))),.3)
-RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
-LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(170+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
 elseif Root.Velocity.Magnitude < 2 then -- idle
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(140+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/11),0.5+0.05*math.cos(sine/11),0+0*math.cos(sine/11))*ANGLES(RAD(0+0*math.cos(sine/11)),RAD(0+0*math.cos(sine/11)),RAD(0+0*math.cos(sine/11))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/13),0.5+0.05*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/13),-1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 elseif Root.Velocity.Magnitude < 20 then -- walk
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(140+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0.05*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+30*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
-RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+50*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
-LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+-50*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+-30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
 elseif Root.Velocity.Magnitude > 20 then -- run
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(140+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0.05*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+30*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
-RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+50*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
-LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/9),-1+0*math.cos(sine/9),0+0*math.cos(sine/9))*ANGLES(RAD(0+-50*math.cos(sine/9)),RAD(0+0*math.cos(sine/9)),RAD(0+0*math.cos(sine/9))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/13),0.5+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+-30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+end
+elseif Mode == '2' then
+hatset('Pal Hair','Head',CFrame.new(),reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),-1.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
+reanim['Pal Hair'].Handle.AccessoryWeld.C0 = reanim['Pal Hair'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),-1.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+hatset('fff_fox','Head',CFrame.new(),reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),-3+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(180+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
+reanim['fff_fox'].Handle.AccessoryWeld.C0 = reanim['fff_fox'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),-3+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(180+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+if Root.Velocity.y > 1 then -- jump
+NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+elseif Root.Velocity.y < -1 then -- fall
+NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(170+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+elseif Root.Velocity.Magnitude < 2 then -- idle
+NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/8),0.5+0.05*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0.05*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+elseif Root.Velocity.Magnitude < 20 then -- walk
+NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+-25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+-30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+elseif Root.Velocity.Magnitude > 20 then -- run
+NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RJ.C0 = RJ.C0:Lerp(CF(0+0*math.cos(sine/13),0+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
+RS.C0 = RS.C0:Lerp(CF(1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+LS.C0 = LS.C0:Lerp(CF(-1+0*math.cos(sine/8),0.5+0*math.cos(sine/8),0+0*math.cos(sine/8))*ANGLES(RAD(0+-25*math.cos(sine/8)),RAD(0+0*math.cos(sine/8)),RAD(0+0*math.cos(sine/8))),.3)
+RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/7),-1+0*math.cos(sine/7),0+0*math.cos(sine/7))*ANGLES(RAD(0+-30*math.cos(sine/7)),RAD(0+0*math.cos(sine/7)),RAD(0+0*math.cos(sine/7))),.3)
+end
 end
 srv.RenderStepped:Wait()
 end
