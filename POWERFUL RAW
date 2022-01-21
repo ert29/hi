@@ -1,13 +1,3 @@
- for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Accessory") then
-            if v.Handle:FindFirstChild("Mesh") then
-                v.Handle.Mesh:Destroy()
-            else
-                v.Handle.SpecialMesh:Destroy()
-            end
-        end
-    end
-
 HumanDied = false
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/XeneonPlays/Nexo/main/NexoReanimate'),true))()
 
