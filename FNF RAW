@@ -2,16 +2,9 @@
 plr["MeshPartAccessory"].Name = "car1"
 plr["MeshPartAccessory"].Name = "car2"
 
- for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Accessory") then
-            if v.Handle:FindFirstChild("Mesh") then
-                v.Handle.Mesh:Destroy()
-            else
-                v.Handle.SpecialMesh:Destroy()
-            end
-        end
-    end
-
+game.Players.LocalPlayer.Character["car1"].Handle.SpecialMesh:Remove()
+game.Players.LocalPlayer.Character["car2"].Handle.SpecialMesh:Remove()
+game.Players.LocalPlayer.Character["SparksFinalPrize"].Handle.SpecialMesh:Remove()
 
 HumanDied = false
 local reanim
@@ -51,7 +44,6 @@ ABS = math.abs
 MRANDOM = math.random
 FLOOR = math.floor
 
-
 speed = 1
 sine = 1
 srv = game:GetService('RunService')
@@ -64,8 +56,6 @@ if nm==true then
 noplsmesh(yes)
 end
 end
-
-
 
 --put the hat script converted below
 
@@ -90,8 +80,6 @@ LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 
-
-
 Mode='1'
 
 mousechanger=game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(k)
@@ -99,11 +87,10 @@ if k == 'z' then-- first mode
 Mode='1'
 elseif k == 'x' then-- second mode
 Mode='2'
-elseif k == 'c' then-- third mode
+elseif k == 'c' then -- third Mode
 Mode='3'
 end
 end)
-
 
 coroutine.wrap(function()
 hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/13),3.5+0*math.cos(sine/13),-0.5+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
@@ -112,7 +99,6 @@ hatset('car1','Torso',CFrame.new(),reanim['car1'].Handle.AccessoryWeld.C0:Lerp(C
 reanim['car1'].Handle.AccessoryWeld.C0 = reanim['car1'].Handle.AccessoryWeld.C0:Lerp(CF(6+0*math.cos(sine/13),2+0*math.cos(sine/13),2.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(20+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
 hatset('car2','Torso',CFrame.new(),reanim['car2'].Handle.AccessoryWeld.C0:Lerp(CF(-6+0*math.cos(sine/13),2+0*math.cos(sine/13),2.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(-20+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),1),true)
 reanim['car2'].Handle.AccessoryWeld.C0 = reanim['car2'].Handle.AccessoryWeld.C0:Lerp(CF(-6+0*math.cos(sine/13),2+0*math.cos(sine/13),2.5+0*math.cos(sine/13))*ANGLES(RAD(90+0*math.cos(sine/13)),RAD(-20+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
-
 while true do -- anim changer
 if HumanDied then mousechanger:Disconnect() break end
 sine = sine + speed
