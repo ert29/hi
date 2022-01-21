@@ -1,17 +1,24 @@
- for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Accessory") then
-            if v.Handle:FindFirstChild("Mesh") then
-                v.Handle.Mesh:Destroy()
-            else
-                v.Handle.SpecialMesh:Destroy()
-            end
-        end
- end
 
 HumanDied = false
+local reanim
+local te
+local ct
+local m
+function noplsmesh(hat)
+_G.OldCF=workspace.Camera.CFrame
+oldchar=game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character=workspace[game.Players.LocalPlayer.Name]
+for i,v in next, workspace[game.Players.LocalPlayer.Name][hat]:GetDescendants() do
+if v:IsA('Mesh') or v:IsA('SpecialMesh') then
+v:Remove()
+end
+end
+game.Players.LocalPlayer.Character=oldchar
+wait()
+workspace.Camera.CFrame=_G.OldCF
+game.Players.LocalPlayer.Character=oldchar
+end
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/XeneonPlays/Nexo/main/NexoReanimate'),true))()
-
-
 
 IT = Instance.new
 CF = CFrame.new
@@ -39,35 +46,11 @@ reanim[yes].Handle.AccessoryWeld.Part1=reanim[part]
 reanim[yes].Handle.AccessoryWeld.C1=c1 or CFrame.new()
 reanim[yes].Handle.AccessoryWeld.C0=c0 or CFrame.new()--3bbb322dad5929d0d4f25adcebf30aa5
 if nm==true then
-for i,v in next, workspace[game.Players.LocalPlayer.Name][yes].Handle:GetDescendants() do
-if v:IsA('Mesh') or v:IsA('SpecialMesh') then
-v:Remove()
-end
-end
+noplsmesh(yes)
 end
 end
 
-function setuptrail(parent,Pos1,Pos2,Color,LT,LE,Texture)
-IT = Instance.new
-local Part1 = parent
-local A1 = IT("Attachment",Part1)
-A1.Position = Pos1
-A1.Name = "ATH10"
-local B1 = IT("Attachment",Part1)
-B1.Position = Pos2
-B1.Name = "ATH11"
-local Trail1 = IT("Trail",Part1)
-Trail1.Name = "Nexo Trail"
-Trail1.Color = Color
-Trail1.Attachment0 = B1
-Trail1.Attachment1 = A1
-Trail1.Lifetime = LT
-Trail1.LightEmission = LE
-Trail1.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 1)})
-Trail1.Texture = Texture
-Trail1.Enabled = true
-end
-
+--put the hat script converted below
 
 reanim = game.Players.LocalPlayer.Character
 RJ = reanim.HumanoidRootPart.RootJoint
@@ -90,14 +73,6 @@ LH.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 RS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 LS.C0 = CF(0,0,0)*ANGLES(RAD(0),RAD(0),RAD(0))
 
-z = Instance.new("Sound", torso)
-z.SoundId = "rbxassetid://5729692309" -- Put Music ID Here.
-z.Looped = true
-z.Pitch = 1
-z.Volume = 0.6
-wait(.1)
-z:Play()
-
 Mode='1'
 
 mousechanger=game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(k)
@@ -113,17 +88,36 @@ end
 end)
 
 coroutine.wrap(function()
---hats here
 while true do -- anim changer
-if HumanDied then break end
+if HumanDied then mousechanger:Disconnect() break end
 sine = sine + speed
+local rlegray = Ray.new(reanim["Right Leg"].Position + Vector3.new(0, 0.5, 0), Vector3.new(0, -2, 0))
+local rlegpart, rlegendPoint = workspace:FindPartOnRay(rlegray, char)
+local llegray = Ray.new(reanim["Left Leg"].Position + Vector3.new(0, 0.5, 0), Vector3.new(0, -2, 0))
+local llegpart, llegendPoint = workspace:FindPartOnRay(llegray, char)
+local rightvector = (Root.Velocity * Root.CFrame.rightVector).X + (Root.Velocity * Root.CFrame.rightVector).Z
+local lookvector = (Root.Velocity * Root.CFrame.lookVector).X + (Root.Velocity * Root.CFrame.lookVector).Z
+if lookvector > reanim.Humanoid.WalkSpeed then
+lookvector = reanim.Humanoid.WalkSpeed
+end
+if lookvector < -reanim.Humanoid.WalkSpeed then
+lookvector = -reanim.Humanoid.WalkSpeed
+end
+if rightvector > reanim.Humanoid.WalkSpeed then
+rightvector = reanim.Humanoid.WalkSpeed
+end
+if rightvector < -reanim.Humanoid.WalkSpeed then
+rightvector = -reanim.Humanoid.WalkSpeed
+end
+local lookvel = lookvector / reanim.Humanoid.WalkSpeed
+local rightvel = rightvector / reanim.Humanoid.WalkSpeed
 if Mode == '1' then
 reanim.Humanoid.WalkSpeed=30
-hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-15+0*math.cos(sine/45),15+0*math.cos(sine/45))*ANGLES(RAD(0+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),true)
+hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-15+0*math.cos(sine/45),15+0*math.cos(sine/45))*ANGLES(RAD(0+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),false)
 reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0 = reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-15+0*math.cos(sine/45),15+0*math.cos(sine/45))*ANGLES(RAD(0+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),.3)
-hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(15+0*math.cos(sine/45),0+0*math.cos(sine/45),23+0*math.cos(sine/45))*ANGLES(RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(90+0*math.cos(sine/45))),1),true)
+hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(15+0*math.cos(sine/45),0+0*math.cos(sine/45),23+0*math.cos(sine/45))*ANGLES(RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(90+0*math.cos(sine/45))),1),false)
 reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0 = reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(15+0*math.cos(sine/45),0+0*math.cos(sine/45),23+0*math.cos(sine/45))*ANGLES(RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(90+0*math.cos(sine/45))),.3)
-hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-30+0*math.cos(sine/45),-15+0*math.cos(sine/45))*ANGLES(RAD(90+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),true)
+hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-30+0*math.cos(sine/45),-15+0*math.cos(sine/45))*ANGLES(RAD(90+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),false)
 reanim['New Tonk'].Handle.AccessoryWeld.C0 = reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),-30+0*math.cos(sine/45),-15+0*math.cos(sine/45))*ANGLES(RAD(90+0*math.cos(sine/45)),RAD(0+360*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),.3)
 if Root.Velocity.y > 1 then -- jump
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -163,11 +157,11 @@ LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/13),-1+0.01*math.cos(sine/13),0+0*mat
 end
 elseif Mode == '2' then
 reanim.Humanoid.WalkSpeed=16
-hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),2+0*math.cos(sine/45),-2+0*math.cos(sine/45))*ANGLES(RAD(45+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),true)
+hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),2+0*math.cos(sine/45),-2+0*math.cos(sine/45))*ANGLES(RAD(45+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),1),false)
 reanim['New Tonk'].Handle.AccessoryWeld.C0 = reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/45),2+0*math.cos(sine/45),-2+0*math.cos(sine/45))*ANGLES(RAD(45+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45)),RAD(0+0*math.cos(sine/45))),.3)
-hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(4+0*math.cos(sine/30),0+0*math.cos(sine/30),-5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),1),true)
+hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(4+0*math.cos(sine/30),0+0*math.cos(sine/30),-5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),1),false)
 reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0 = reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(4+0*math.cos(sine/30),0+0*math.cos(sine/30),-5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),.3)
-hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(10+0*math.cos(sine/30),0+0*math.cos(sine/30),-4.5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),1),true)
+hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(10+0*math.cos(sine/30),0+0*math.cos(sine/30),-4.5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),1),false)
 reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0 = reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(10+0*math.cos(sine/30),0+0*math.cos(sine/30),-4.5+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+5*math.cos(sine/30)),RAD(90+0*math.cos(sine/30))),.3)
 if Root.Velocity.y > 1 then -- jump
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -207,11 +201,11 @@ LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/6),-1+0*math.cos(sine/6),0+0*math.cos
 end
 elseif Mode == '3' then
 reanim.Humanoid.WalkSpeed=12
-hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/30),5.5+0*math.cos(sine/30),0+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30))),1),true)
+hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/30),5.5+0*math.cos(sine/30),0+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30))),1),false)
 reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0 = reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/30),5.5+0*math.cos(sine/30),0+0*math.cos(sine/30))*ANGLES(RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30)),RAD(0+0*math.cos(sine/30))),.3)
-hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(-10+0*math.cos(sine/35),10+0*math.cos(sine/35),0+0*math.cos(sine/35))*ANGLES(RAD(0+360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35)),RAD(90+0*math.cos(sine/35))),1),true)
+hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(-10+0*math.cos(sine/35),10+0*math.cos(sine/35),0+0*math.cos(sine/35))*ANGLES(RAD(0+360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35)),RAD(90+0*math.cos(sine/35))),1),false)
 reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0 = reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(-10+0*math.cos(sine/35),10+0*math.cos(sine/35),0+0*math.cos(sine/35))*ANGLES(RAD(0+360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35)),RAD(90+0*math.cos(sine/35))),.3)
-hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(13+0*math.cos(sine/35),0+0*math.cos(sine/35),15+0*math.cos(sine/35))*ANGLES(RAD(90+0*math.cos(sine/35)),RAD(0+-360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35))),1),true)
+hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(13+0*math.cos(sine/35),0+0*math.cos(sine/35),15+0*math.cos(sine/35))*ANGLES(RAD(90+0*math.cos(sine/35)),RAD(0+-360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35))),1),false)
 reanim['New Tonk'].Handle.AccessoryWeld.C0 = reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(13+0*math.cos(sine/35),0+0*math.cos(sine/35),15+0*math.cos(sine/35))*ANGLES(RAD(90+0*math.cos(sine/35)),RAD(0+-360*math.cos(sine/35)),RAD(0+0*math.cos(sine/35))),.3)
 if Root.Velocity.y > 1 then -- jump
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
@@ -250,11 +244,11 @@ RH.C0 = RH.C0:Lerp(CF(0.5+0*math.cos(sine/6),-1+0*math.cos(sine/6),0+0*math.cos(
 LH.C0 = LH.C0:Lerp(CF(-0.5+0*math.cos(sine/6),-1+0*math.cos(sine/6),0+0*math.cos(sine/6))*ANGLES(RAD(0+0*math.cos(sine/6)),RAD(0+0*math.cos(sine/6)),RAD(0+0*math.cos(sine/6))),.3)
 end
 elseif Mode == '4' then
-hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/10),0+0*math.cos(sine/10),-11+0*math.cos(sine/10))*ANGLES(RAD(0+0*math.cos(sine/10)),RAD(0+0*math.cos(sine/10)),RAD(0+360*math.cos(sine/10))),1),true)
+hatset('MeshPartAccessory','Torso',CFrame.new(),reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/10),0+0*math.cos(sine/10),-11+0*math.cos(sine/10))*ANGLES(RAD(0+0*math.cos(sine/10)),RAD(0+0*math.cos(sine/10)),RAD(0+360*math.cos(sine/10))),1),false)
 reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0 = reanim['MeshPartAccessory'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/10),0+0*math.cos(sine/10),-11+0*math.cos(sine/10))*ANGLES(RAD(0+0*math.cos(sine/10)),RAD(0+0*math.cos(sine/10)),RAD(0+360*math.cos(sine/10))),.3)
-hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(14+0*math.cos(sine/15),0+0*math.cos(sine/15),-11+0*math.cos(sine/15))*ANGLES(RAD(0+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(90+360*math.cos(sine/15))),1),true)
+hatset('SparksFinalPrize','Torso',CFrame.new(),reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(14+0*math.cos(sine/15),0+0*math.cos(sine/15),-11+0*math.cos(sine/15))*ANGLES(RAD(0+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(90+360*math.cos(sine/15))),1),false)
 reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0 = reanim['SparksFinalPrize'].Handle.AccessoryWeld.C0:Lerp(CF(14+0*math.cos(sine/15),0+0*math.cos(sine/15),-11+0*math.cos(sine/15))*ANGLES(RAD(0+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(90+360*math.cos(sine/15))),.3)
-hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/15),11+0*math.cos(sine/15),-28+0*math.cos(sine/15))*ANGLES(RAD(90+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(0+360*math.cos(sine/15))),1),true)
+hatset('New Tonk','Torso',CFrame.new(),reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/15),11+0*math.cos(sine/15),-28+0*math.cos(sine/15))*ANGLES(RAD(90+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(0+360*math.cos(sine/15))),1),false)
 reanim['New Tonk'].Handle.AccessoryWeld.C0 = reanim['New Tonk'].Handle.AccessoryWeld.C0:Lerp(CF(0+0*math.cos(sine/15),11+0*math.cos(sine/15),-28+0*math.cos(sine/15))*ANGLES(RAD(90+0*math.cos(sine/15)),RAD(0+0*math.cos(sine/15)),RAD(0+360*math.cos(sine/15))),.3)
 if Root.Velocity.y > 1 then -- jump
 NECK.C0 = NECK.C0:Lerp(CF(0+0*math.cos(sine/13),1+0*math.cos(sine/13),0+0*math.cos(sine/13))*ANGLES(RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13)),RAD(0+0*math.cos(sine/13))),.3)
